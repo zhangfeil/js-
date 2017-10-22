@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <ul id="ul">
+        <li class="li li1">1</li>
+        <li id="li2">2</li>
+        <li class="li">3</li>
+    </ul>
+<script>
+
+    /*
+        substring
+        substr
+        slice
+        charAt
+        indexOf
+        lasetIndexOf
+        split  join
+
+        pop
+        push
+        shift
+        unshift
+        forEach
+        every
+        map
+        concat
+        sort
+        slice
+        splice
+        from
+        some
+
+    */
+
+    var ul = document.getElementById('ul');
+
+    //var lis = ul.getElementsByClassName('li');
+
+    // $('li')
+
+    var arr = [];
+    console.dir(Array);
+
+    function $(name) {
+        var o = name.charAt();//截取传入的函数实参的第一个字符
+        var arr = [];//存储具有符合条件的className的元素的数组
+        //console.log(aEle)
+        if(o === '#'){//传入的参数的第一个字符为#
+            return document.getElementById(name.substring(1));//使用getElementById()来获取元素
+        }else if(o === '.'){//传入的参数的第一个字符为.
+            var aEle = document.getElementsByTagName('*');//获取所有元素
+            var d = name.substring(1);//获取截取了第一个字符的函数实参剩余字符串
+            for(var i=0;i<aEle.length;i++){//循环所有元素
+                var sClass = aEle[i].className.split(' ');//将每一个元素的类名通过空格截取成数组
+                for(var j=0;j<sClass.length;j++){//循环当前元素的类名数组
+                    if(sClass[j] === d){//查看类名数组中是否有和截取后的实参类名相同的
+                        arr.push(aEle[i]);//将具有这个类名数组的元素添加进入数组中
+                    }
+                }
+            }
+            return arr;
+        }else{
+            return document.getElementsByTagName(name);//如果第一个字符不是#和.，那么就是用getElementByTagName()获取元素
+        }
+        // console.log(o);
+    }
+
+    //$('#li2').style.background = 'red';
+
+    for(var i=0;i<$('.li').length;i++){
+        $('.li')[i].style.background = 'red';
+    }
+    
+    console.log($('li'));
+
+    // console.log(lis.length);
+
+</script>
+</body>
+</html>

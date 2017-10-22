@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+<script>
+    /*
+        找出下列字符串中数量最多的是谁？有多少个？
+    */
+    var str = '0d302sa00ud04yy553y210a0udyt27036320190e03029y27';
+    var min = -Infinity;//存储字符的数量的变量
+    var index = '';//存储字符的变量
+    str = str.split('').sort().join('');//将原字符串拆分排序后重新拼接成新的具有重复子项的字符串
+    //\w\1+表示获取重复的子项，如dddddddddd
+    str.replace(/(\w)\1+/g,function($0,$1){//匹配全局中重复的子项，以及子项中的第一个字符
+       // console.log($1)
+       if(min < $0.length){//如果当前匹配的子项的长度>min
+         min = $0.length;//将当前子项的长度赋值给min
+         index = $1;//并且将当前子项的第一个字符赋值给index
+       }
+    });
+
+    console.log('最多的是'+index+'，出现了'+min+'次');//打印输出结果
+    // console.log(str);
+
+
+ /*************************************************************/   
+    
+    
+    // var json = {};//定义一个空对象
+    // for(var i=0;i<str.length;i++){//循环字符串中的每一个字符
+    //     if(!json[str[i]]){//如果当前循环到的字符对应的json键名的键值为空，
+    //         json[str[i]] = 1;//将当前循环到的字符作为json的键名，并且给键值赋值为1
+    //     }else{//如果当前循环到的字符对应的json键名的键值不为空
+    //         json[str[i]] ++;//当前对应的json键值自增1
+    //     }
+    // }
+
+    // var min = -Infinity;//存储字符的数量的变量
+    // var index = '';//存储字符的变量
+    // for(var attr in json){//循环json对象
+    //     if(json[attr] > min){//如果当前json的键值>min
+    //         min = json[attr];//将当前json的键值赋值给min
+    //         index = attr;//将当前json的键名赋值给index
+    //     }
+    // }
+
+    // console.log('最多的是'+index+'，出现了'+min+'次');//打印输出结果
+
+</script>
+</body>
+</html>

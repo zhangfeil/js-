@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+.ok{
+    border:1px solid green;
+    color:green;
+}
+.error{
+    border:1px solid red;
+    color:red;
+}
+</style>
+</head>
+<body>
+    <input type="text" id="txt"/>
+    <button id="btn">提交</button>
+<script>
+    var txt = document.getElementById('txt');//获取输入框
+    var btn = document.getElementById('btn');//获取按钮
+    btn.onclick = function(){
+        /*
+            qq的规则：
+                都是数字，第一个不能为0，5-12位
+        */
+        var v = txt.value;//获取输入框内容
+        // if(v){
+        //     // if(/^[1-9]\d{4,11}$/.test(v.trim())){
+        //     //     txt.className = 'ok';
+        //     // }else{
+        //     //     txt.className = 'error';
+        //     // }
+            
+        //     txt.className = /^[1-9]\d{4,11}$/.test(v.trim())?'ok':'error';
+
+        // }else{
+        //     alert('请输入内容!');
+        // }
+        //
+        
+        
+        
+        /*
+         * 
+        	1.当前输入框的内容为空,弹出提示语
+        	2.当前输入框内容不为空，输入框根据当前输入的内容和正则表达式的匹配结果获取相应的类名
+        	3.当前输入框的值和正则表达式的匹配结果为true，输入框获取类名ok;匹配结果为false,否则输入框获取类名error
+         * 
+         * */
+        !v?alert('请输入内容!'):(txt.className = /^[1-9]\d{4,11}$/.test(v.trim())?'ok':'error');
+
+    } 
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+#box{
+    width:100px;
+    height: 100px;
+    background: red;
+    position: absolute;
+    top:0;
+    left:0;
+}    
+</style>
+</head>
+<body>
+   <div id="box"></div>
+<script>
+    
+    function Drag(id){
+        var box = document.getElementById(id);//获取元素
+        var disX = 0;
+        var disY = 0;
+        box.addEventListener('mousedown',down);//在元素身上添加mousedown事件,执行down函数的内容
+        function down(ev){
+            disX = ev.clientX - this.offsetLeft;//获取鼠标距离元素左边的距离
+            disY = ev.clientY - this.offsetTop;//获取鼠标距离元素定边的距离
+
+            document.addEventListener('mousemove',move);//在document上添加mousemove事件,执行move函数的内容
+            document.addEventListener('mouseup',up);//在document上添加mouseup事件，执行up函数的内容
+            function move(ev){
+                box.style.left = ev.clientX - disX + 'px'; //元素的左边距=鼠标在当前的页面横坐标-鼠标距离元素左边的距离
+                box.style.top = ev.clientY - disY + 'px';//元素的上边距=鼠标在当前的页面纵坐标-鼠标距离元素顶边的距离
+            }
+            function up(){
+                document.removeEventListener('mousemove',move);//解除document上绑定的mousemove事件
+                document.removeEventListener('mouseup',up);//解除document上绑定的mouseup事件
+            }
+        }
+    }
+
+    Drag('box');
+
+</script>
+</body>
+</html>

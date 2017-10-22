@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<style>
+  
+</style>
+</head>
+<body>
+<script>
+    function addWeel(obj,fn){
+        //FF
+        if(obj.onmousewheel === undefined){//如果当前元素的onmousewheel属性值为undefined，那么当前浏览器是火狐浏览器
+            obj.addEventListener('DOMMouseScroll',fn1);//使用DOMMouseScroll为当前元素添加滚轮事件
+        }else{//如果当前元素的onmousewheel属性值不为undefined，那么当前浏览器是Chrome,ie
+        //Chrome
+            obj.addEventListener('mousewheel',fn1);//使用mousewheel为当前元素添加滚轮事件
+        }
+        function fn1(ev){
+            var o = true;
+            if(ev.wheelDelta){//如果ev.wheelDelta的值不是undefined，那么当前浏览器是Chrome,ie
+                o = ev.wheelDelta>0 ? true : false;//判断ev.wheelDelta的值，如果ev.wheelDelta的值>0,返回true;如果ev.wheelDelta的值<0，返回false
+            }else{//如果ev.wheelDelta的值是undefined,那么当前浏览器是火狐浏览器
+                o = ev.detail < 0?true : false;//判断ev.detail的值，如果ev.detail的值<0,返回true;如果ev.detail的值>0，返回false
+            }
+            //根据判断后的结果执行回调函数
+            fn && fn(o);
+        }
+    }
+    addWeel(document,function(o){
+        if(o){//如果条件为真
+            alert('上');//当前鼠标执行向上滚轮
+        }else{//如果条件为假
+            alert('下');//当前鼠标执行向下滚轮
+        }
+    });
+    console.log(document.onmousewheel)
+    
+
+</script>
+</body>
+</html>
